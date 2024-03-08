@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import UIKit
+
+ /***
+ 1번 과제 완
+ 2번 과제 완
+ 
+ var greeting = "Hello, playground"
+ print(greeting)
+
+ ***/
+class Calculator {
+    func add(_ x: Double, _ y: Double) -&gt; Double {
+        return x + y
+    }
+    
+    func subtract(_ x: Double, _ y: Double) -&gt; Double {
+        return x - y
+    }
+    
+    func multiply(_ x: Double, _ y: Double) -&gt; Double {
+        return x * y
+    }
+    
+    func divide(_ x: Double, _ y: Double) -&gt; Double {
+        guard y != 0 else {
+            fatalError("Divisor cannot be zero")
+        }
+        return x / y
+    }
+    
+    func remainder(_ x: Double, _ y: Double) -&gt; Double {
+           guard y != 0 else {
+               fatalError("Divisor cannot be zero")
+           }
+           return x.truncatingRemainder(dividingBy: y)
+       }
+}
+
+
+let calculator = Calculator()
+
+var resultAdd = calculator.add(10, 5)
+print("Addition result: \(resultAdd)")
+
+var resultSubtract = calculator.subtract(10, 5)
+print("Subtraction result: \(resultSubtract)")
+
+var resultMultiply = calculator.multiply(10, 5)
+print("Multiplication result: \(resultMultiply)")
+
+var resultDivide = calculator.divide(10, 5)
+print("Division result: \(resultDivide)")
+
+var resultRemainder1 = calculator.remainder(6, 3)
+print("Remainder result: \(resultRemainder1)")
+
+var resultRemainder2 = calculator.remainder(5, 3)
+print("Remainder result: \(resultRemainder2)")
+
+print("\nNewCalculator\n")
+
+// Calculator 클래스 내부 코드 변경
+// 각 연산을 위한 프로토콜 정의
+protocol Operation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double
+}
+
+// 더하기 연산 클래스
+class AddOperation: Operation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        return x + y
+    }
+}
+
+// 빼기 연산 클래스
+class SubtractOperation: Operation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        return x - y
+    }
+}
+
+// 곱하기 연산 클래스
+class MultiplyOperation: Operation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        return x * y
+    }
+}
+
+// 나누기 연산 클래스
+class DivideOperation: Operation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        guard y != 0 else {
+            fatalError("Divisor cannot be zero")
+        }
+        return x / y
+    }
+}
+
+// Calculator 클래스 내부 코드 변경
+class NewCalculator {
+    let addOperation = AddOperation()
+    let subtractOperation = SubtractOperation()
+    let multiplyOperation = MultiplyOperation()
+    let divideOperation = DivideOperation()
+    
+    func perform(operation: Operation, x: Double, y: Double) -&gt; Double {
+        return operation.calculate(x, y)
+    }
+}
+
+
+// Calculator 클래스를 사용하여 연산을 수행하고 출력
+let calc = NewCalculator()
+
+resultAdd = calc.perform(operation: calc.addOperation, x: 10, y: 5)
+print("Addition result: \(resultAdd)")
+
+resultSubtract = calc.perform(operation: calc.subtractOperation, x: 10, y: 5)
+print("Subtraction result: \(resultSubtract)")
+
+resultMultiply = calc.perform(operation: calc.multiplyOperation, x: 10, y: 5)
+print("Multiplication result: \(resultMultiply)")
+
+resultDivide = calc.perform(operation: calc.divideOperation, x: 10, y: 5)
+print("Division result: \(resultDivide)")
+
+
+// 과제 4
+// AbstractOperation 프로토콜 정의
+protocol AbstractOperation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double
+}
+
+// AddOperation, SubtractOperation, MultiplyOperation, DivideOperation 클래스들 구현
+class NewAddOperation: AbstractOperation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        return x + y
+    }
+}
+
+class NewSubtractOperation: AbstractOperation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        return x - y
+    }
+}
+
+class NewMultiplyOperation: AbstractOperation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        return x * y
+    }
+}
+
+class NewDivideOperation: AbstractOperation {
+    func calculate(_ x: Double, _ y: Double) -&gt; Double {
+        guard y != 0 else {
+            fatalError("Divisor cannot be zero")
+        }
+        return x / y
+    }
+}
+
+// Calculator 클래스 내부 코드 변경
+class AbstractorCalculator {
+    func performOperation(operation: AbstractOperation, x: Double, y: Double) -&gt; Double {
+        return operation.calculate(x, y)
+    }
+}
+
+print("\nAbstructCalculator\n")
+
+// Calculator 인스턴스 생성
+let abcalculator = AbstractorCalculator()
+
+resultAdd = abcalculator.performOperation(operation: NewAddOperation(), x: 5, y: 3)
+print("Addition result: \(resultAdd)") 
+
+resultSubtract = abcalculator.performOperation(operation: NewSubtractOperation(), x: 5, y: 3)
+print("Addition result: \(resultSubtract)") 
+
+resultDivide = abcalculator.performOperation(operation: NewDivideOperation(), x: 6, y: 3)
+print("Addition result: \(resultDivide)") 
+
+resultMultiply = abcalculator.performOperation(operation: NewMultiplyOperation(), x: 5, y: 3)
+print("Addition result: \(resultMultiply)") 
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 4701}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
